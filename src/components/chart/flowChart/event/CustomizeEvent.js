@@ -1,6 +1,5 @@
 /**
  * 创建自定义事件
- * @param {*} dom 
  */
 class Event {
     constructor () {
@@ -34,18 +33,20 @@ class Event {
     }
 
     // 触发事件
-    dispatchEvent (type) {
+    dispatchEvent (type, event, ...rest) {
         if (this.listener[type]) {
             // 遍历执行该类型的所有方法
             for (let fn of this.listener[type]) {
-                fn()
+                fn(type, event, ...rest)
             }
         } else {
             console.warn(`不存在当前类型的事件${type}`)
         }
     }
+
+    destroy () {
+        this.listener = []
+    }
 }
 
-const CustomizeEvent = new Event()
-
-export default CustomizeEvent
+export default Event
