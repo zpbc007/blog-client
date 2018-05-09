@@ -1,11 +1,13 @@
 <template>
     <div>
-
+        <div class="chart-container" ref="flow-chart"></div>
     </div>
 </template>
 
 <script>
-import { SVG } from './flowChart/index'
+import { init,
+    getInstance,
+    destroy } from './flowChart/index'
 export default {
     data () {
         return {
@@ -13,15 +15,13 @@ export default {
         }
     },
     mounted () {
-        const svg = new SVG(document.body, '', '')
-        window.svg = svg
-        svg.beforDestory(() => {
-            console.log('要被删除了')
-        })
-        svg.destoryed(() => {
-            console.log('已经删除了')
-        })
-        svg.destroy()
+        let chart1 = init('el')
+        let chart2 = init('el')
+
+        window.chart1 = chart1
+        window.chart2 = chart2
+        window.getInstance = getInstance
+        window.destroy = destroy
     }
 }
 </script>
