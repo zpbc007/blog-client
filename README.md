@@ -1,6 +1,11 @@
-# 博客前端
+# 重构博客web端
 
 ## 目标
 
-- [x] 项目搭建
-- [x] 部署到服务器
+- [ ] react
+- [ ] react-router
+- [ ] typescript
+- [ ] docker
+- [ ] webpack
+- [ ] 实现自己的ui库
+- [ ] styled components
