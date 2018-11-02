@@ -26,12 +26,15 @@ export default {
         // 如果有流程图 利用flowchart进行转换
         innerHtml () {
             this.$nextTick(() => {
-                let flowCode = document.querySelector('.language-flow')
+                let flowCode = document.querySelectorAll('.language-flow')
                 if (flowCode) {
-                    flowCode.setAttribute('id', 'flow-chart')
-                    let flowChart = flowchart.parse(flowCode.innerText)
-                    flowCode.innerText = ''
-                    flowChart.drawSVG('flow-chart')
+                    for (let i = 0, len = flowCode.length; i < len; i++) {
+                        const item = flowCode[i];
+                        item.setAttribute('id', `flow-chart-${i}`)
+                        let flowChartIns = flowchart.parse(item.innerText)
+                        item.innerText = ''
+                        flowChartIns.drawSVG(`flow-chart-${i}`)
+                    }
                 }
             })
         }
