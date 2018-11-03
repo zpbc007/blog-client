@@ -1,9 +1,11 @@
+import { Contacts, Label, Pages, Search } from '@material-ui/icons';
+
 // 暂时没有想到有二级菜单的情况先不增加
 interface MenuItem {
     // 显示名称
     name: string;
     // 图标
-    icon: string;
+    icon: React.ComponentType;
     // 对应路由
     path: string;
 }
@@ -11,22 +13,23 @@ interface MenuItem {
 // 菜单配置
 const menuData: MenuItem[] = [{
     name: '博客',
-    icon: 'blog',
-    path: 'blog/list',
+    icon: Pages,
+    path: '/blog/list',
 }, {
     name: '关于我',
-    icon: 'about me',
-    path: 'blog/about',
+    icon: Contacts,
+    path: '/blog/about',
 }, {
     name: 'tags',
-    icon: 'tags',
-    path: 'blog/tags',
+    icon: Label,
+    path: '/blog/tags',
 }, {
     name: '搜索',
-    icon: 'search',
-    path: 'blog/search',
+    icon: Search,
+    path: '/blog/search',
 }];
 
 export {
     menuData,
-}
+    MenuItem,
+};

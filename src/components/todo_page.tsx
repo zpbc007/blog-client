@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { LayoutCompProps } from 'common/router';
+import * as React from 'react';
 
 export default class TodoPage extends React.PureComponent<LayoutCompProps> {
     render() {

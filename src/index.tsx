@@ -1,10 +1,15 @@
+import { RootNode } from 'common/router';
+import 'normalize.css';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { RootNode } from 'common/router';
+import { Normalize } from 'styled-normalize';
 
 document.addEventListener('DOMContentLoaded', () => {
     ReactDom.render(
-        <RootNode />,
-        document.getElementById('app')
+        <React.Fragment>
+            <Normalize />
+            <RootNode />
+        </React.Fragment>,
+        document.getElementById('app'),
     );
-})
+});

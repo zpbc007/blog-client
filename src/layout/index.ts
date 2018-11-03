@@ -1,5 +1,1 @@
-import { MainLayout } from './main';
-
-export {
-    MainLayout,
-}
+export { MainLayout } from './main_layout';

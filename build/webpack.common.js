@@ -19,6 +19,9 @@ module.exports = {
             test: /\.jsx?$/,
             use: 'source-map-loader',
             enforce: 'pre'
+        }, {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader']
         }]
     },
     plugins: [
