@@ -1,7 +1,20 @@
-import { Divider, Drawer, Hidden, Icon, List, ListItem, ListItemIcon, ListItemText, SwipeableDrawer } from '@material-ui/core';
+import {
+    Divider,
+    Drawer,
+    Hidden,
+    Icon,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    SwipeableDrawer,
+    Theme,
+    withTheme,
+} from '@material-ui/core';
 import { MenuItem } from 'common/menu';
 import * as React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
+import { transition } from 'style';
 import styled from 'styled-components';
 import { Omit } from 'utils/type_utils';
 import { Brand, BrandProps } from '.';
@@ -15,13 +28,12 @@ interface PropsInterface extends Omit<BrandProps, 'onClick'> {
     // 头像点击跳转url
     link: string;
     menuList: MenuItem[];
+    theme: Theme;
 }
 
 const MenuWrapper = styled.div<{width: number}>`
     width: ${props => props.width}px;
-    transition-property: width;
-    transition-duration: .2s;
-    transition-timing-function: linear;
+    transition: ${transition('width')};
 `;
 
 const ModalProps = {
@@ -30,10 +42,11 @@ const ModalProps = {
 };
 
 // 对当前匹配连接高亮显示
-const StyledNavLink = styled(NavLink)`
+const StyledNavLink = styled(({activeColor, ...props}: any) => <NavLink {...props} />)<{activeColor: string}>`
     &.${(props) => props.activeClassName}>div {
-        background-color: #2196f3;
+        background-color: ${(props) => props.activeColor};
     }
+    text-decoration: none;
 `;
 
 //
@@ -43,7 +56,7 @@ const StyledListItem = styled(ListItem)`
 `;
 
 /** 响应式侧边栏 */
-export class SideBar extends React.Component<PropsInterface> {
+class SideBar extends React.Component<PropsInterface> {
     handleBrandClick = () => {
         console.log('brand click');
     }
@@ -54,8 +67,10 @@ export class SideBar extends React.Component<PropsInterface> {
             avatar,
             nickName,
             text,
+            textFrom,
             width,
             menuList,
+            theme,
         } = this.props;
 
         const BrandContent = (
@@ -64,6 +79,7 @@ export class SideBar extends React.Component<PropsInterface> {
                     avatar={avatar}
                     nickName={nickName}
                     text={text}
+                    textFrom={textFrom}
                     onClick={this.handleBrandClick}
                     open={open}
                 />
@@ -75,6 +91,7 @@ export class SideBar extends React.Component<PropsInterface> {
                                 key={item.name}
                                 to={item.path}
                                 activeClassName='active'
+                                activeColor={theme.palette.primary.main}
                             >
                                 <StyledListItem
                                     button={true}
@@ -121,3 +138,5 @@ export class SideBar extends React.Component<PropsInterface> {
         );
     }
 }
+
+export default withTheme()(SideBar);

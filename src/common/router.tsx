@@ -1,4 +1,4 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { colors, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 import TodoPage from 'components/todo_page';
 import { MainLayout } from 'layout';
 import * as React from 'react';
@@ -15,7 +15,7 @@ export interface RouteItem {
     title?: string;
     // 菜单名
     menuText?: string;
-    component?: React.ComponentClass<LayoutCompProps> | React.ComponentClass<any>;
+    component?: React.ComponentType<any>;
     // 子路由
     routes?: RouteItem[];
     exact?: boolean;
@@ -28,7 +28,7 @@ export interface RouteItem {
 const routeConfig: RouteItem[] = [{
     title: '博客',
     path: 'blog',
-    component: MainLayout,
+    component: MainLayout ,
     routes: [{
         title: '列表',
         path: 'list',
@@ -74,7 +74,7 @@ function fixPath(routeArr: RouteItem[], parentPath: string = '/') {
     });
 }
 
-const RouteWithSubRoutes = (route: RouteItem) => {
+export const RouteWithSubRoutes = (route: RouteItem) => {
     if (route.redirect) {
         return (
             <Redirect
@@ -110,6 +110,9 @@ const RouteWithSubRoutes = (route: RouteItem) => {
 const theme = createMuiTheme({
     typography: {
       useNextVariants: true,
+    },
+    palette: {
+        primary: colors.blue,
     },
 });
 

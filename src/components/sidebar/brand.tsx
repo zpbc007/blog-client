@@ -10,6 +10,8 @@ export interface PropsInterface {
     nickName: string;
     // 显示文字
     text: string;
+    // 文字出处
+    textFrom: string;
     onClick: () => void;
     open: boolean;
 }
@@ -37,14 +39,25 @@ const AvatarWrapper = styled(({ width,
 const TextWrapper = styled.div<{show: boolean}>`
     opacity: ${props => props.show ? 1 : 0};
     transition: ${transition('opacity')};
+    padding: 0 1em;
+    height: 16em;
+    overflow: auto;
     h1 {
         color: #696969;
     }
     p {
         color: #999;
         line-height: 1.75;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
+`;
+
+const SentenceWrapper = styled.p`
+    text-align: left;
+`;
+
+const AuthorWrapper = styled.p`
+    text-align: right;
 `;
 
 // 背景div
@@ -55,7 +68,7 @@ const imgOpenMargin = 20;
 // 侧边栏中的头像部分
 export class Brand extends React.PureComponent<PropsInterface> {
     render() {
-        const { avatar, text, nickName, onClick, open } = this.props;
+        const { avatar, text, nickName, onClick, open, textFrom } = this.props;
         const imgSize = open ? imgOpenSize : imgCloseSize;
         const marginValue = open ? imgOpenMargin : (imgOpenMargin + (imgOpenSize - imgCloseSize) / 2);
 
@@ -71,7 +84,8 @@ export class Brand extends React.PureComponent<PropsInterface> {
                 />
                 <TextWrapper show={open}>
                     <h1>{nickName}</h1>
-                    <p>{text}</p>
+                    {text ? (<SentenceWrapper>{text}</SentenceWrapper>) : null}
+                    {textFrom ? (<AuthorWrapper>- {textFrom}</AuthorWrapper>) : null}
                 </TextWrapper>
             </BrandWrapper>
         );

@@ -6,11 +6,4 @@ export const Config = {
     avatar: 'http://pic.zpblog.xyz/FrMv0wQayKKam6wC4xuRhtFv1g4F',
     // 昵称
     nickname: '赵鹏',
-    // 一言配置 https://hitokoto.cn/api
-    oneWord: {
-        url: 'https://v1.hitokoto.cn',
-        query: {
-            c: 'd',
-        },
-    },
 };
