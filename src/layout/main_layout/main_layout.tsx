@@ -24,7 +24,7 @@ const MainPanel = styled.div<{width: number}>`
     width: calc(100% - ${props => props.width}px);
     float: right;
     height: 100vh;
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     transition: ${transition('width')};
     display: flex;
@@ -34,6 +34,7 @@ const MainPanel = styled.div<{width: number}>`
 const ContentWrapper = styled.div`
     padding-top: 64px;
     flex: 1 1 auto;
+    overflow: auto;
 `;
 
 const FooterWrapper = styled.footer`
