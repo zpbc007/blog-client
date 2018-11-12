@@ -1,4 +1,4 @@
-import { AppBar, Button, IconButton, Toolbar, withWidth } from '@material-ui/core';
+import { AppBar, Button, IconButton, Paper, Toolbar, withWidth } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import { FormatTextdirectionLToRRounded, FormatTextdirectionRToLRounded, Menu as MenuIcon } from '@material-ui/icons';
@@ -17,6 +17,7 @@ import { LeftBarWidth } from './const';
 const LayoutWrapper = styled.div`
     position: relative;
     height: 100vh;
+    background-color: #f4f4f4;
 `;
 
 // 右侧内容容器根据当前状态计算宽度
@@ -32,9 +33,23 @@ const MainPanel = styled.div<{width: number}>`
 `;
 
 const ContentWrapper = styled.div`
-    padding-top: 64px;
+    padding: 88px 24px 0;
     flex: 1 1 auto;
     overflow: auto;
+    /* position: relative; */
+    /* &&::before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        content: ' ';
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+        background-image: url(https://api.dujin.org/bing/1920.php);
+        opacity: 0.6;
+    } */
 `;
 
 const FooterWrapper = styled.footer`

@@ -3,6 +3,7 @@ import TodoPage from 'components/todo_page';
 import { MainLayout } from 'layout';
 import * as React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import BlogListPage from 'views/blog_list_page';
 
 // 路由容器
 export interface LayoutCompProps {
@@ -32,7 +33,7 @@ const routeConfig: RouteItem[] = [{
     routes: [{
         title: '列表',
         path: 'list',
-        component: TodoPage,
+        component: BlogListPage,
         exact: true,
     }, {
         path: ':id',
