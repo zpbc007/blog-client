@@ -8,6 +8,8 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
+            'codemirror',
+            'react-codemirror2'
         ], // 第三方库
         app: './src/index.tsx' // 入口文件
     },
@@ -19,6 +21,17 @@ module.exports = {
             test: /\.jsx?$/,
             use: 'source-map-loader',
             enforce: 'pre'
+        }, {
+            test: /\.scss$/,
+            use: [{
+                loader: "style-loader" // creates style nodes from JS strings
+            }, {
+                loader: "css-loader" // translates CSS into CommonJS
+            }, {
+                loader: "postcss-loader" // add css prefix
+            }, {
+                loader: "sass-loader" // compiles Sass to CSS
+            }]
         }, {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']

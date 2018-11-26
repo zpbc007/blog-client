@@ -11,7 +11,7 @@ export class BlogListPageStore {
         const res = await serviceGetBlogList();
 
         runInAction(() => {
-            this.blogList = res;
+            this.blogList = res as any;
         });
     }
 }

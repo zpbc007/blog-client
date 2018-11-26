@@ -14,6 +14,7 @@ import { ContentItem, TagItem } from '.';
 
 interface PropsInterface extends ContentItem {
     onTagClick?: (tagId: string) => void;
+    onCardClick?: (cardId: string) => void;
     className?: string;
 }
 
@@ -39,6 +40,13 @@ export class ContentCard extends React.PureComponent<PropsInterface> {
         onTagClick && onTagClick(id);
     }
 
+    handleCardClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const { onCardClick } = this.props;
+        const id = event.currentTarget.getAttribute('data-id') || '';
+
+        onCardClick && onCardClick(id);
+    }
+
     renderTags = () => {
         const { tagList } = this.props;
         const TagList: React.ReactNodeArray = [];
@@ -59,18 +67,27 @@ export class ContentCard extends React.PureComponent<PropsInterface> {
         }
 
         return TagList;
-
     }
+
     render() {
         const {
             className,
             imgUrl,
             title,
             content,
+            id,
         } = this.props;
         return (
-            <Card className={className}>
+            <Card
+                className={className}
+                raised={true}
+                onClick={this.handleCardClick}
+                data-id={id}
+            >
                 <CardActionArea>
+                    <ImgWrapper
+                        image={imgUrl}
+                    />
                     <CardContent>
                         <Typography
                             gutterBottom={true}
@@ -79,9 +96,6 @@ export class ContentCard extends React.PureComponent<PropsInterface> {
                         >
                             {title}
                         </Typography>
-                        <ImgWrapper
-                            image={imgUrl}
-                        />
                         <Typography
                             component={'p'}
                         >

@@ -1,7 +1,7 @@
 import { AppBar, Button, IconButton, Paper, Toolbar, withWidth } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import { FormatTextdirectionLToRRounded, FormatTextdirectionRToLRounded, Menu as MenuIcon } from '@material-ui/icons';
+import { ChevronLeft, ChevronRight, FormatTextdirectionLToRRounded, FormatTextdirectionRToLRounded, Menu as MenuIcon } from '@material-ui/icons';
 import { menuData } from 'common/menu';
 import { RouteItem, RouteWithSubRoutes } from 'common/router';
 import { SideBar } from 'components/sidebar';
@@ -119,7 +119,7 @@ export class MainLayout extends React.Component<PropsInterface, StateInterface> 
             isWidthUpMd = isWidthUp('md', width),
             sideBarPageWidth = isWidthUpMd ? sideBarWidth : 0;
 
-        const CurIcon = isWidthUpMd ? (sideBarOpen ? FormatTextdirectionRToLRounded : FormatTextdirectionLToRRounded) : MenuIcon;
+        const CurIcon = isWidthUpMd ? (sideBarOpen ? ChevronLeft : ChevronRight) : MenuIcon;
 
         return (
             <LayoutWrapper>

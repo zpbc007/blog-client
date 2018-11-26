@@ -3,7 +3,7 @@ import * as React from 'react';
 import { transition } from 'style';
 import styled from 'styled-components';
 
-export interface PropsInterface {
+interface PropsInterface {
     // 头像src
     avatar: string;
     // 昵称
@@ -66,7 +66,7 @@ const imgOpenSize = 100;
 const imgCloseSize = 34;
 const imgOpenMargin = 20;
 // 侧边栏中的头像部分
-export class Brand extends React.PureComponent<PropsInterface> {
+class Brand extends React.PureComponent<PropsInterface> {
     render() {
         const { avatar, text, nickName, onClick, open, textFrom } = this.props;
         const imgSize = open ? imgOpenSize : imgCloseSize;
@@ -91,3 +91,8 @@ export class Brand extends React.PureComponent<PropsInterface> {
         );
     }
 }
+
+export {
+    PropsInterface,
+    Brand,
+};

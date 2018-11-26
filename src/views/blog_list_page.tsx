@@ -5,10 +5,11 @@ import { ContentCard } from 'components/card';
 import { withStoreIns } from 'hoc/withStore';
 import { observer } from 'mobx-react';
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { compose } from 'recompose';
 import storeIns, { BlogListPageStore } from './blog_list_page.store';
 
-interface PropsInterface {
+interface PropsInterface extends RouteComponentProps {
     store: BlogListPageStore;
     width: Breakpoint;
 }
@@ -22,6 +23,12 @@ class BlogListPage extends React.Component<PropsInterface> {
     handleTagClick = (id: string) => {
         // tag 列表页
         console.log(`tag id: ${id}`);
+    }
+
+    handleCardClick = (id: string) => {
+        const { history } = this.props;
+
+        history.push(`/blog/${id}`);
     }
 
     renderCard = () => {
@@ -63,6 +70,7 @@ class BlogListPage extends React.Component<PropsInterface> {
                     <ContentCard
                         key={`${index}`}
                         onTagClick={this.handleTagClick}
+                        onCardClick={this.handleCardClick}
                         {...blogList[index]}
                     />
                 </Grid>

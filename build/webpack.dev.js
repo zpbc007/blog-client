@@ -16,7 +16,7 @@ module.exports = merge(common, {
             }
         },
         historyApiFallback: true, // 404页面返回index.html
-        contentBase: '../dist',
+        contentBase: '../',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin({})

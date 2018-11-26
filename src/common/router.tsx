@@ -3,6 +3,8 @@ import TodoPage from 'components/todo_page';
 import { MainLayout } from 'layout';
 import * as React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import BlogEditPage from 'views/blog_edit';
+import BlogItemPage from 'views/blog_item';
 import BlogListPage from 'views/blog_list_page';
 
 // 路由容器
@@ -36,8 +38,18 @@ const routeConfig: RouteItem[] = [{
         component: BlogListPage,
         exact: true,
     }, {
+        title: '编辑',
+        path: 'edit',
+        component: BlogEditPage,
+        exact: true,
+    }, {
+        title: '关于我',
+        path: 'about',
+        component: BlogEditPage,
+        exact: true,
+    }, {
         path: ':id',
-        component: TodoPage,
+        component: BlogItemPage,
     }],
 }, {
     title: '登录',
