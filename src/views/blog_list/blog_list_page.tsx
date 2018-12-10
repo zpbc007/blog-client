@@ -1,8 +1,11 @@
-import { Grid, withWidth } from '@material-ui/core';
+import { Card, CardActionArea, CardContent, Grid, withWidth } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { isWidthUp } from '@material-ui/core/withWidth';
+import { Add } from '@material-ui/icons';
 import { ContentCard } from 'components/card';
+import { withLogin, WithLoginProps } from 'hoc/withLogin';
 import { withStoreIns } from 'hoc/withStore';
+import { LoginContext } from 'index';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
@@ -16,6 +19,7 @@ interface PropsInterface extends RouteComponentProps {
 
 @observer
 class BlogListPage extends React.Component<PropsInterface> {
+    static contextType: React.Context<{ isLogin: boolean; }> = LoginContext;
     componentDidMount() {
         this.props.store.getBlogList();
     }
@@ -31,7 +35,13 @@ class BlogListPage extends React.Component<PropsInterface> {
         history.push(`/blog/${id}`);
     }
 
-    renderCard = () => {
+    handleAddClick = () => {
+        const { history } = this.props;
+
+        history.push(`/blog/add`);
+    }
+
+    renderCard = (isLogin: boolean) => {
         const {
             width,
             store: { blogList },
@@ -49,6 +59,27 @@ class BlogListPage extends React.Component<PropsInterface> {
             columnNum = 2;
         } else if (isWidthUpXs && !columnNum) {
             columnNum = 1;
+        }
+
+        if (isLogin) {
+            // 如果登录了 有一个添加的card
+            ColumnArr[0] = [(
+                <Grid
+                    item={true}
+                    key='add-card'
+                >
+                    <Card
+                        raised={true}
+                        onClick={this.handleAddClick}
+                    >
+                        <CardActionArea>
+                            <CardContent>
+                                <Add />
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                </Grid>
+            )];
         }
 
         for (let index = 0, len = blogList.length; index < len; index++) {
@@ -105,7 +136,9 @@ class BlogListPage extends React.Component<PropsInterface> {
                 container={true}
                 justify='space-between'
             >
-                {this.renderCard()}
+                <LoginContext.Consumer>
+                    {({ isLogin }) => this.renderCard(isLogin)}
+                </LoginContext.Consumer>
             </Grid>
         );
     }

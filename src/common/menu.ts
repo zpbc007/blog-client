@@ -8,13 +8,15 @@ interface MenuItem {
     icon: React.ComponentType;
     // 对应路由
     path: string;
+    exact?: boolean;
 }
 
 // 菜单配置
 const menuData: MenuItem[] = [{
     name: '博客',
     icon: Pages,
-    path: '/blog/list',
+    path: '/blog',
+    exact: true,
 }, {
     name: '关于我',
     icon: Contacts,

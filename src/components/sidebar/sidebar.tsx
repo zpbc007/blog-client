@@ -1,8 +1,6 @@
 import {
     Divider,
-    Drawer,
     Hidden,
-    Icon,
     List,
     ListItem,
     ListItemIcon,
@@ -13,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { MenuItem } from 'common/menu';
 import * as React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { transition } from 'style';
 import styled from 'styled-components';
 import { Omit } from 'utils/type_utils';
@@ -90,6 +88,7 @@ class SideBar extends React.Component<PropsInterface> {
                             <StyledNavLink
                                 key={item.name}
                                 to={item.path}
+                                exact={item.exact || false}
                                 activeClassName='active'
                                 activeColor={theme.palette.primary.main}
                             >

@@ -5,12 +5,7 @@ export class BlogItem extends React.Component {
     render() {
         return (
             <Markdown
-                markdownString={`
-                    # Header
-
-                    \`\`\`javascript
-                        const a = '13';
-                    \`\`\`
+                markdownString={`# 123
                 `}
             />
         );

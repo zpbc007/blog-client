@@ -1,7 +1,7 @@
-import { AppBar, Button, IconButton, Paper, Toolbar, withWidth } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, withWidth } from '@material-ui/core';
 import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import { ChevronLeft, ChevronRight, FormatTextdirectionLToRRounded, FormatTextdirectionRToLRounded, Menu as MenuIcon } from '@material-ui/icons';
+import { ChevronLeft, ChevronRight, Menu as MenuIcon } from '@material-ui/icons';
 import { menuData } from 'common/menu';
 import { RouteItem, RouteWithSubRoutes } from 'common/router';
 import { SideBar } from 'components/sidebar';
@@ -36,20 +36,6 @@ const ContentWrapper = styled.div`
     padding: 88px 24px 0;
     flex: 1 1 auto;
     overflow: auto;
-    /* position: relative; */
-    /* &&::before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        content: ' ';
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        background-size: cover;
-        background-image: url(https://api.dujin.org/bing/1920.php);
-        opacity: 0.6;
-    } */
 `;
 
 const FooterWrapper = styled.footer`

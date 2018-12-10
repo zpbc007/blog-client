@@ -5,6 +5,9 @@ import { getBlogList as serviceGetBlogList } from 'service/blog_list';
 export class BlogListPageStore {
     @observable
     blogList: ContentItem[] = [];
+    // 标签列表
+    @observable
+    tagList = [];
 
     @action
     getBlogList = async () => {

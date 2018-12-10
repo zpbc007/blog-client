@@ -1,11 +1,15 @@
 import { colors, createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import { ErrorPage } from 'components/error_page';
 import TodoPage from 'components/todo_page';
 import { MainLayout } from 'layout';
 import * as React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { AdminPage } from 'views/admin';
 import BlogEditPage from 'views/blog_edit';
 import BlogItemPage from 'views/blog_item';
-import BlogListPage from 'views/blog_list_page';
+import { BlogListPage } from 'views/blog_list';
+import LoginPage from 'views/login';
+import { UserList } from 'views/users';
 
 // 路由容器
 export interface LayoutCompProps {
@@ -13,7 +17,7 @@ export interface LayoutCompProps {
 }
 
 export interface RouteItem {
-    path: string;
+    path?: string;
     // 浏览器title
     title?: string;
     // 菜单名
@@ -33,13 +37,8 @@ const routeConfig: RouteItem[] = [{
     path: 'blog',
     component: MainLayout ,
     routes: [{
-        title: '列表',
-        path: 'list',
-        component: BlogListPage,
-        exact: true,
-    }, {
-        title: '编辑',
-        path: 'edit',
+        title: '添加',
+        path: 'add',
         component: BlogEditPage,
         exact: true,
     }, {
@@ -48,29 +47,44 @@ const routeConfig: RouteItem[] = [{
         component: BlogEditPage,
         exact: true,
     }, {
+        title: '编辑',
+        path: 'edit/:id',
+        component: BlogEditPage,
+        exact: true,
+    }, {
         path: ':id',
         component: BlogItemPage,
+    }, {
+        title: '列表',
+        path: '/',
+        component: BlogListPage,
+        exact: true,
     }],
 }, {
     title: '登录',
     path: 'login',
-    component: TodoPage,
+    component: LoginPage,
 }, {
     title: '测试',
     path: 'playground',
     component: TodoPage,
 }, {
-    title: '管理',
-    path: 'admin',
-    component: TodoPage,
+    path: 'error/:code',
+    component: ErrorPage,
 }, {
     path: '/',
-    redirect: 'blog',
+    exact: true,
+    redirect: '/blog',
+}, {
+    redirect: '/error/404',
 }];
 
 function fixPath(routeArr: RouteItem[], parentPath: string = '/') {
-    return routeArr.map(routeItem => {
+    const reuslt =  routeArr.map(routeItem => {
         let subPath = routeItem.path;
+        if (!subPath) { // 404
+            return routeItem;
+        }
         if (subPath[0] === '/') {
             subPath = subPath.slice(1, subPath.length);
         }
@@ -85,6 +99,10 @@ function fixPath(routeArr: RouteItem[], parentPath: string = '/') {
             path: curPath,
         };
     });
+
+    console.log('route', reuslt);
+
+    return reuslt;
 }
 
 export const RouteWithSubRoutes = (route: RouteItem) => {
@@ -133,7 +151,7 @@ const RootNode = () => (
     <BrowserRouter>
         <MuiThemeProvider theme={theme}>
             <Switch>
-                {fixPath(routeConfig).map(item => (<RouteWithSubRoutes {...item} key={item.path} />))}
+                {fixPath(routeConfig).map(item => (<RouteWithSubRoutes {...item} key={item.path || ''} />))}
             </Switch>
         </MuiThemeProvider>
     </BrowserRouter>
