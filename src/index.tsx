@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ReactDom.render(
         <React.Fragment>
             <Normalize />
-            <LoginContext.Provider value={{isLogin: true}}>
+            <LoginContext.Provider value={{isLogin: res}}>
                 <RootNode />
             </LoginContext.Provider>
             <ToastContainer autoClose={10000} />

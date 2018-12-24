@@ -1,3 +1,4 @@
+import { LoginToken } from 'common/const';
 import * as UrlUtil from 'url';
 
 /**
@@ -34,4 +35,15 @@ export function addQuery(url: string, queryVariables: {[key: string]: any}) {
         }
         return `${element}=${queryVariables[element]}`;
     }).join('&')}`;
+}
+
+/**
+ * 创建验证头
+ */
+export function createAuthHeader() {
+    const token = window.localStorage.getItem(LoginToken);
+    const tokenString = `Bearer ${token}`;
+    return {
+        Authorization: tokenString,
+    };
 }

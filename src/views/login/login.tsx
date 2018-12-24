@@ -7,6 +7,7 @@ import { config, Spring } from 'react-spring';
 import { toast } from 'react-toastify';
 import { SchemaModel, StringType } from 'rsuite-schema';
 import { login } from 'service/user';
+import { CheckResult } from 'type/form';
 import {
     BottomBg,
     Footer,
@@ -28,19 +29,14 @@ interface StateInterface {
     model: any;
     form: {
         // 用户名
-        username: string;
+        account: string;
         // 密码
         password: string;
     };
     formError: {
-        username: CheckResult;
+        account: CheckResult;
         password: CheckResult;
     };
-}
-
-interface CheckResult {
-    hasError: boolean;
-    errorMessage?: string;
 }
 
 // 登录页面
@@ -50,23 +46,23 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
 
         this.state = {
             model: SchemaModel({
-                username: StringType()
-                    .minLength(8, '不能少于8位')
+                account: StringType()
+                    .minLength(6, '不能少于6位')
                     .maxLength(16, '不能超过16位')
                     .isRequired('用户名不能为空'),
                 password: StringType()
-                    .minLength(8, '不能少于8位')
+                    .minLength(6, '不能少于6位')
                     .maxLength(16, '不能超过16位')
                     .isRequired('密码不能为空'),
             }),
             loading: false,
             showPassword: false,
             form: {
-                username: '',
+                account: '',
                 password: '',
             },
             formError: {
-                username: { hasError: false },
+                account: { hasError: false },
                 password: { hasError: false },
             },
         };
@@ -79,12 +75,16 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
     }
 
     handleSubmit = async () => {
-        const { model, form: { username, password }} = this.state;
+        const { model, form: { account, password }} = this.state;
         const { history } = this.props;
 
         const result = model.check({
-            username,
+            account,
             password,
+        });
+
+        this.setState({
+            formError: result,
         });
 
         for (const key in result) {
@@ -98,7 +98,7 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
 
         this.toggleLoading();
         const res = await login({
-            username,
+            account,
             password,
         }).catch(e => {
             toast.error(e.message);
@@ -106,9 +106,9 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
         this.toggleLoading();
 
         if (res) {
-            const { data: { token }, msg } = res.data;
+            const { data, msg } = res.data;
             msg && toast.success(msg);
-            localStorage.setItem(LoginToken, token);
+            window.localStorage.setItem(LoginToken, data);
             history.push('/admin');
         } else {
             toast.error('出现错误');
@@ -147,8 +147,8 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
         const {
             showPassword,
             loading,
-            form: { username, password },
-            formError: { username: usernameError, password: passwordError },
+            form: { account, password },
+            formError: { account: accountError, password: passwordError },
         } = this.state;
 
         return (
@@ -186,14 +186,14 @@ export class Login extends React.PureComponent<RouteComponentProps, StateInterfa
                             <Form>
                                 <StyledTextField
                                     label='用户名'
-                                    value={username}
-                                    error={usernameError.hasError}
-                                    helperText={usernameError.errorMessage}
+                                    value={account}
+                                    error={accountError.hasError}
+                                    helperText={accountError.errorMessage}
                                     onChange={this.handleFieldChange}
                                     required={true}
                                     fullWidth={true}
                                     inputProps={{
-                                        'data-field': 'username',
+                                        'data-field': 'account',
                                     }}
                                     disabled={loading}
                                 />

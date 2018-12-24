@@ -724,6 +724,40 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@devexpress/dx-core@^1.9.0":
+  version "1.9.1"
+  resolved "http://registry.npm.taobao.org/@devexpress/dx-core/download/@devexpress/dx-core-1.9.1.tgz#959217c3f5915b97a2e56e6018a98b8aa4874f7e"
+  integrity sha1-lZIXw/WRW5ei5W5gGKmLiqSHT34=
+
+"@devexpress/dx-grid-core@^1.9.0":
+  version "1.9.1"
+  resolved "http://registry.npm.taobao.org/@devexpress/dx-grid-core/download/@devexpress/dx-grid-core-1.9.1.tgz#7ff8d8bead921395c7d7dd003c08e7b14de1e0d6"
+  integrity sha1-f/jYvq2SE5XH190APAjnsU3h4NY=
+
+"@devexpress/dx-react-core@1.9.0":
+  version "1.9.0"
+  resolved "http://registry.npm.taobao.org/@devexpress/dx-react-core/download/@devexpress/dx-react-core-1.9.0.tgz#5b17b0959add43b8c4bdd4e02139d64f445a96e5"
+  integrity sha1-WxewlZrdQ7jEvdTgITnWT0RaluU=
+  dependencies:
+    "@devexpress/dx-core" "^1.9.0"
+    prop-types "^15.6.2"
+
+"@devexpress/dx-react-grid-material-ui@1.9.0":
+  version "1.9.0"
+  resolved "http://registry.npm.taobao.org/@devexpress/dx-react-grid-material-ui/download/@devexpress/dx-react-grid-material-ui-1.9.0.tgz#cc0b098b2130ff9d935f96cb91373b5917b87a88"
+  integrity sha1-zAsJiyEw/52TX5bLkTc7WRe4eog=
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+
+"@devexpress/dx-react-grid@1.9.0":
+  version "1.9.0"
+  resolved "http://registry.npm.taobao.org/@devexpress/dx-react-grid/download/@devexpress/dx-react-grid-1.9.0.tgz#143d8bb94e9b8664701ad1d54526947279eb7b6b"
+  integrity sha1-FD2LuU6bhmRwGtHVRSaUcnnre2s=
+  dependencies:
+    "@devexpress/dx-grid-core" "^1.9.0"
+    prop-types "^15.6.2"
+
 "@emotion/is-prop-valid@^0.6.8":
   version "0.6.8"
   resolved "http://registry.npm.taobao.org/@emotion/is-prop-valid/download/@emotion/is-prop-valid-0.6.8.tgz#68ad02831da41213a2089d2cab4e8ac8b30cbd85"
@@ -5399,15 +5433,15 @@ react-transition-group@^2.2.1, react-transition-group@^2.4.0:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@^16.6.3:
-  version "16.6.3"
-  resolved "http://registry.npm.taobao.org/react/download/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
-  integrity sha1-Jdd8kZEda73SPbQecPsJTMHghxw=
+react@^16.7.0:
+  version "16.7.0"
+  resolved "http://registry.npm.taobao.org/react/download/react-16.7.0.tgz#b674ec396b0a5715873b350446f7ea0802ab6381"
+  integrity sha1-tnTsOWsKVxWHOzUERvfqCAKrY4E=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.11.2"
+    scheduler "^0.12.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -5813,10 +5847,10 @@ schedule@^0.5.0:
   dependencies:
     object-assign "^4.1.1"
 
-scheduler@^0.11.2:
-  version "0.11.3"
-  resolved "http://registry.npm.taobao.org/scheduler/download/scheduler-0.11.3.tgz#b5769b90cf8b1464f3f3cfcafe8e3cd7555a2d6b"
-  integrity sha1-tXabkM+LFGTz88/K/o4811VaLWs=
+scheduler@^0.12.0:
+  version "0.12.0"
+  resolved "http://registry.npm.taobao.org/scheduler/download/scheduler-0.12.0.tgz#8ab17699939c0aedc5a196a657743c496538647b"
+  integrity sha1-irF2mZOcCu3FoZamV3Q8SWU4ZHs=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

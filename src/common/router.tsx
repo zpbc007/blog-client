@@ -4,12 +4,12 @@ import TodoPage from 'components/todo_page';
 import { MainLayout } from 'layout';
 import * as React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { AdminPage } from 'views/admin';
+import AdminPage from 'views/admin';
 import BlogEditPage from 'views/blog_edit';
 import BlogItemPage from 'views/blog_item';
 import { BlogListPage } from 'views/blog_list';
 import LoginPage from 'views/login';
-import { UserList } from 'views/users';
+import UserListPage from 'views/user';
 
 // 路由容器
 export interface LayoutCompProps {
@@ -60,6 +60,14 @@ const routeConfig: RouteItem[] = [{
         component: BlogListPage,
         exact: true,
     }],
+}, {
+    title: '后台管理',
+    path: 'admin',
+    component: AdminPage,
+}, {
+    title: '用户管理',
+    path: 'user',
+    component: UserListPage,
 }, {
     title: '登录',
     path: 'login',
