@@ -1,5 +1,3 @@
-import { colors } from '@material-ui/core';
-
 /**
  * 复制给定字符串
  * @param str 给定字符串

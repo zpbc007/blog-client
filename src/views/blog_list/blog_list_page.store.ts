@@ -1,6 +1,6 @@
 import { ContentItem } from 'components/card';
 import { action, observable, runInAction } from 'mobx';
-import { getBlogList as serviceGetBlogList } from 'service/blog_list';
+import { getArticleList } from 'service/article';
 
 export class BlogListPageStore {
     @observable
@@ -11,7 +11,7 @@ export class BlogListPageStore {
 
     @action
     getBlogList = async () => {
-        const res = await serviceGetBlogList();
+        const res = await getArticleList();
 
         runInAction(() => {
             this.blogList = res as any;
