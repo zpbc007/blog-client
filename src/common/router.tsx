@@ -16,7 +16,7 @@ export interface LayoutCompProps {
     routes: RouteItem[];
 }
 
-export interface RouteItem {
+interface RouteItem {
     path?: string;
     // 浏览器title
     title?: string;
