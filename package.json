@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./build/webpack.prod.js --progress --colors",
-    "dev": "webpack-dev-server --config ./build/webpack.dev.js"
+    "dev": "webpack-dev-server --config ./build/webpack.dev.js --progress --colors",
+    "analysis": "webpack --config ./build/webpack.prod.js --progress --colors --profile --json > stats.json && webpack-bundle-analyzer ./stats.json"
   },
   "repository": {
     "type": "git",
@@ -19,20 +20,14 @@
   },
   "homepage": "https://github.com/zpbc007/blog-front#readme",
   "dependencies": {
-    "@devexpress/dx-react-core": "1.9.0",
-    "@devexpress/dx-react-grid": "1.9.0",
-    "@devexpress/dx-react-grid-material-ui": "1.9.0",
-    "@material-ui/core": "^3.2.2",
-    "@material-ui/icons": "^3.0.1",
-    "@types/codemirror": "^0.0.69",
-    "@types/highlight.js": "^9.12.3",
+    "antd": "^3.11.6",
     "axios": "^0.18.0",
+    "babel-plugin-import": "^1.11.0",
     "babel-runtime": "^6.26.0",
     "codemirror": "^5.41.0",
     "highlight.js": "^9.13.1",
     "mobx": "^5.6.0",
     "mobx-react": "^5.3.6",
-    "normalize.css": "^8.0.0",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
     "react-codemirror2": "^5.1.0",
@@ -40,9 +35,7 @@
     "react-markdown": "^4.0.3",
     "react-router-dom": "^4.3.1",
     "react-spring": "^6.1.10",
-    "react-toastify": "^4.4.3",
     "recompose": "^0.30.0",
-    "rsuite-schema": "^0.1.0",
     "styled-components": "^4.0.2",
     "styled-normalize": "^8.0.3",
     "url": "^0.11.0"
@@ -55,6 +48,8 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
+    "@types/codemirror": "^0.0.71",
+    "@types/highlight.js": "^9.12.3",
     "@types/query-string": "^6.1.1",
     "@types/react": "^16.4.14",
     "@types/react-dom": "^16.0.8",
@@ -77,6 +72,7 @@
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.1",
     "webpack": "^4.20.2",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.9",
     "webpack-merge": "^4.1.4"

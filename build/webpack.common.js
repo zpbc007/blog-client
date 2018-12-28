@@ -1,17 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin'); 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        vendor: [
-            'react',
-            'react-dom',
-            'codemirror',
-            'react-codemirror2'
-        ], // 第三方库
-        app: './src/index.tsx' // 入口文件
+        admin: path.resolve(__dirname, '../src/admin/index.tsx'),
+        blog: path.resolve(__dirname, '../src/blog/index.tsx'),
     },
     module: {
         rules: [{   // 转换ts文件
@@ -38,14 +32,17 @@ module.exports = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin([path.resolve(__dirname, '../dist')], {
-            verbose:  true,
-            root: path.resolve(__dirname, '../')
-        }),
-        new HtmlWebpackPlugin({
+        new HtmlWebpackPlugin({ // blog
             filename: "index.html",
             template: 'index.html',
-            inject: true
+            inject: true,
+            chunks: ['vendor', 'blog']
+        }),
+        new HtmlWebpackPlugin({ // admin
+            filename: "admin.html",
+            template: 'index.html',
+            inject: true,
+            chunks: ['vendor', 'admin']
         })
     ],
     resolve: {
@@ -58,5 +55,16 @@ module.exports = {
         filename: '[name].[hash].bundle.js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/',
-    }
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    name: 'vendor',
+                }
+            }
+        }
+    },
 }
