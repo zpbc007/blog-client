@@ -10,7 +10,7 @@ import * as React from 'react';
 import { RouteComponentProps, Switch } from 'react-router-dom';
 import { transition } from 'style';
 import styled from 'styled-components';
-import { getWord } from 'utils/one_word';
+import { getWord } from 'service/one_word.service';
 import { LeftBarWidth } from './const';
 
 // 主容器

@@ -4,6 +4,7 @@ import { BlogItem } from 'blog/views/blog_item';
 import { BlogList } from 'blog/views/blog_list';
 import { RouteItem } from 'common';
 import { ErrorPage } from 'components/error_page';
+import { Search } from './views/search';
 
 export const BlogRouterConfig: RouteItem[] = [{
     title: '博客',
@@ -13,6 +14,10 @@ export const BlogRouterConfig: RouteItem[] = [{
         path: './about',
         title: '关于我',
         component: AboutMe,
+    }, {
+        path: './search',
+        title: '搜索',
+        component: Search,
     }, {
         path: './:id',
         component: BlogItem,

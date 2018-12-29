@@ -15,7 +15,7 @@ function formatRoute(routerArr: RouteItem[], parentPath: string = '/') {
         const curPath = UrlUtil.resolve(parentPath, routeItem.path);
 
         if (routeItem.routes) {
-            routeItem.routes = formatRoute(routeItem.routes, curPath);
+            routeItem.routes = formatRoute(routeItem.routes, `${curPath}/`);
         }
 
         return {
@@ -72,6 +72,7 @@ const RouteWithSubRoutes = (route: RouteItem) => {
 // 根节点
 const RouteNode = ({ routeConfig }: {routeConfig: RouteItem[]}) => {
     const routeList = formatRoute(routeConfig);
+    console.log('route', routeList);
     return (
         <HashRouter>
             <Switch>

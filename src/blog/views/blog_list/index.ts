@@ -1,1 +1,5 @@
-export { BlogList } from './blog_list';
+import BlogList from './blog_list';
+
+export {
+    BlogList,
+};

@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { toast } from 'react-toastify';
 import { compose } from 'recompose';
-import { ResetPassModel, UserModel } from 'service/user';
+import { ResetPassModel, UserModel } from 'service/user.service';
 import { ActionTypeProvider, BooleanTypeProvider } from './column_provider';
 import { TableEditMessages, UserListStore } from './user_list.store';
 import { UserResetPass } from './user_reset_pass';

@@ -42,6 +42,11 @@ export function addQuery(url: string, queryVariables: {[key: string]: any}) {
  */
 export function createAuthHeader() {
     const token = window.localStorage.getItem(LoginToken);
+
+    if (!token) {
+        return null;
+    }
+
     const tokenString = `Bearer ${token}`;
     return {
         Authorization: tokenString,

@@ -1,6 +1,6 @@
 import { ContentItem } from 'components/card';
 import { action, observable, runInAction } from 'mobx';
-import { getArticleList } from 'service/article';
+import { getArticleList } from 'service/article.service';
 
 export class BlogListPageStore {
     @observable

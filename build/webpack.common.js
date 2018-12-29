@@ -12,9 +12,17 @@ module.exports = {
             test: /\.tsx?$/,
             use: 'babel-loader'
         }, {
-            test: /\.jsx?$/,
-            use: 'source-map-loader',
-            enforce: 'pre'
+            test: /\.less$/,
+            use: [{
+                loader: 'style-loader'
+            }, {
+                loader: 'css-loader',
+            }, {
+                loader: 'less-loader',
+                options: {
+                    javascriptEnabled: true
+                }
+            }]
         }, {
             test: /\.scss$/,
             use: [{
@@ -28,7 +36,7 @@ module.exports = {
             }]
         }, {
             test: /\.css$/,
-            use: ['style-loader', 'css-loader']
+            use: ["style-loader", "css-loader", "postcss-loader"]
         }]
     },
     plugins: [

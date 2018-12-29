@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export class BlogLayout extends React.PureComponent {
+export class Search extends React.Component {
     render() {
         return (
             <div>
-                layout
+                search
             </div>
         );
     }

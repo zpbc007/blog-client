@@ -2,7 +2,7 @@ import { ChangeSet, Column, Table, TableEditColumn } from '@devexpress/dx-react-
 import Axios from 'axios';
 import { action, observable, runInAction } from 'mobx';
 import { BooleanType, SchemaModel, StringType } from 'rsuite-schema';
-import { getUserList, ResetPassModel, UserModel } from 'service/user';
+import { getUserList, ResetPassModel, UserModel } from 'service/user.service';
 import { createAuthHeader } from 'utils/request';
 
 export const EditUserModel = SchemaModel({

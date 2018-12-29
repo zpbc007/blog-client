@@ -6,7 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { config, Spring } from 'react-spring';
 import { toast } from 'react-toastify';
 import { SchemaModel, StringType } from 'rsuite-schema';
-import { login } from 'service/user';
+import { login } from 'service/user.service';
 import { CheckResult } from 'type/form';
 import {
     BottomBg,

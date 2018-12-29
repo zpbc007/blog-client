@@ -1,7 +1,7 @@
 import { RootNode } from 'common/router';
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { isLogin } from 'service/user';
+import { isLogin } from 'service/user.service';
 import { Normalize } from 'styled-normalize';
 
 export const LoginContext = React.createContext({isLogin: false});

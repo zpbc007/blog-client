@@ -1,6 +1,6 @@
 import { TextField } from '@material-ui/core';
 import * as React from 'react';
-import { ResetPassModel } from 'service/user';
+import { ResetPassModel } from 'service/user.service';
 import styled from 'styled-components';
 import { CheckResult, getDefaultCheckResult } from 'type/form';
 import { RestPassModel } from './user_list.store';
