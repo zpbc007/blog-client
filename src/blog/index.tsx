@@ -8,9 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ReactDom.render(
         <React.Fragment>
             <Normalize />
-            <div>
-                <RouteNode routeConfig={BlogRouterConfig} />
-            </div>
+            <RouteNode routeConfig={BlogRouterConfig} />
         </React.Fragment>,
         document.getElementById('app'),
     );

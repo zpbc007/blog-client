@@ -36,10 +36,7 @@ async function isLogin() {
     }
 
     try {
-        await axios.get<ServerRes<{isLogin: boolean}>>('/api/users/isLogin', {
-            headers: createAuthHeader(),
-        });
-
+        await axios.get<ServerRes<{isLogin: boolean}>>('/api/users/isLogin');
         return true;
     } catch (e) {
         return false;
@@ -56,9 +53,7 @@ async function getUserList() {
 }
 
 async function saveUser(model: UserModel) {
-    const res = await axios.post('/api/users', model, {
-        headers: createAuthHeader(),
-    });
+    const res = await axios.post('/api/users', model);
 
     return res.data;
 }

@@ -1,4 +1,5 @@
 import { RouteItem } from 'common';
+import { AuthRouter } from 'components/auth_router';
 import * as React from 'react';
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
 import * as UrlUtil from 'url';
@@ -34,6 +35,7 @@ const RouteWithSubRoutes = (route: RouteItem) => {
         path,
         exact,
         title,
+        auth,
     } = route;
 
     if (!component && !redirect) {
@@ -59,12 +61,18 @@ const RouteWithSubRoutes = (route: RouteItem) => {
             path={path}
             exact={exact || false}
             // tslint:disable-next-line:jsx-no-lambda
-            render={props => (
-                <Comp
-                    {...compPros}
-                    {...props}
-                />
-            )}
+            render={props => {
+                const comp = (
+                    <Comp
+                        {...compPros}
+                        {...props}
+                    />
+                );
+
+                return auth ? (
+                    <AuthRouter>{comp}</AuthRouter>
+                ) : comp;
+            }}
         />
     );
 };

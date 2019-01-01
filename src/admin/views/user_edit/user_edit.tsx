@@ -1,0 +1,9 @@
+import * as React from 'react';
+
+export class UserEdit extends React.Component {
+    render() {
+        return (
+            <div>UserEdit</div>
+        );
+    }
+}

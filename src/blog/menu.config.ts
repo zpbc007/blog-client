@@ -1,12 +1,4 @@
-interface MenuItem {
-    // 显示名称
-    name: string;
-    // 图标
-    icon: string;
-    // 对应路由
-    path: string;
-    exact?: boolean;
-}
+import { MenuItem } from 'common';
 
 // 菜单配置
 const menuData: MenuItem[] = [{
@@ -25,5 +17,4 @@ const menuData: MenuItem[] = [{
 
 export {
     menuData,
-    MenuItem,
 };

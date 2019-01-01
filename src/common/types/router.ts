@@ -13,6 +13,8 @@ export interface RouteItem {
     exact?: boolean;
     // 重定向目标
     redirect?: string;
+    // 是否需要登录权限
+    auth?: boolean;
     notShowInMenu?: boolean;
     icon?: React.ComponentType | string;
 }
