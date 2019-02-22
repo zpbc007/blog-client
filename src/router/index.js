@@ -61,7 +61,7 @@ const router = new VueRouter({
         {
             path: '/chart6',
             name: 'flowchart6',
-            component: flowchart6
+            component: QuadTree
         }
     ]
 })
