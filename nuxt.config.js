@@ -1,6 +1,8 @@
+import { resolve } from 'path'
 const primaryColor = '#00CD81'
 
-const contentDir = './myContent'
+const docRepoDir = './myContent'
+const contentDir = resolve(docRepoDir, './content')
 
 export default {
   ssr: true,
@@ -77,7 +79,7 @@ export default {
 
   themeDocs: {
     docRepoUrl: 'https://github.com/zpbc007/blog.git',
-    docRepoDir: contentDir,
+    docRepoDir,
   },
 
   // Content module configuration: https://go.nuxtjs.dev/config-content

@@ -40,18 +40,20 @@ const ThemeDocs: Module = async function () {
   // 检查是否已经克隆过
   const hasCloned = await dirExist(targetDir)
 
-  if (hasCloned) {
-    // 更新
-    const error = await safeExec(`cd ${targetDir} && git pull`)
-    if (error) {
-      return Logger.error(`update git repo: ${targetDir} failed: `, error)
-    }
-  } else {
-    // clone
+  // clone
+  if (!hasCloned) {
     const error = await safeExec(`git clone ${docRepoUrl} ${targetDir}`)
     if (error) {
       return Logger.error(`clone git repo: ${docRepoUrl} failed: `, error)
     }
+  }
+
+  // 更新
+  const error = await safeExec(
+    `cd ${targetDir} && git checkout nuxt && git pull --ff-only`
+  )
+  if (error) {
+    return Logger.error(`update git repo: ${targetDir} failed: `, error)
   }
 
   // 创建 tailwind config
