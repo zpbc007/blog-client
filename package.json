@@ -22,6 +22,7 @@
     "@tailwindcss/typography": "0.2.0",
     "@xstate/vue": "^0.4.0",
     "chalk": "^4.1.0",
+    "consola": "^2.15.3",
     "core-js": "^3.8.2",
     "defu": "^3.2.2",
     "lodash.groupby": "^4.6.0",

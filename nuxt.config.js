@@ -1,5 +1,7 @@
 const primaryColor = '#00CD81'
 
+const contentDir = './myContent'
+
 export default {
   ssr: true,
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -73,8 +75,14 @@ export default {
     },
   },
 
+  themeDocs: {
+    docRepoUrl: 'https://github.com/zpbc007/blog.git',
+    docRepoDir: contentDir,
+  },
+
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {
+    dir: contentDir,
     markdown: {
       prism: {
         theme: 'prism-themes/themes/prism-material-oceanic.css',
