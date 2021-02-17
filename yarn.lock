@@ -5302,6 +5302,11 @@ consola@^2.15.0:
   resolved "https://npm.corp.kuaishou.com/consola/-/consola-2.15.2.tgz#c858f1fe36ab97d256c6ebc791905ee923495602"
   integrity sha1-yFjx/jarl9JWxuvHkZBe6SNJVgI=
 
+consola@^2.15.3:
+  version "2.15.3"
+  resolved "https://npm.corp.kuaishou.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
+  integrity sha1-LhH5jWpL5x/3LgvfB70j4Sy2FVA=
+
 console-browserify@^1.1.0:
   version "1.2.0"
   resolved "https://npm.corp.kuaishou.com/console-browserify/-/console-browserify-1.2.0.tgz#67063cef57ceb6cf4993a2ab3a55840ae8c49336"
