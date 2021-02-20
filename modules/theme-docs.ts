@@ -1,10 +1,11 @@
 import { exec } from 'child_process'
-import { isAbsolute, resolve } from 'path'
+import { isAbsolute, resolve, join, basename } from 'path'
 import { access } from 'fs'
 import defu from 'defu'
 import { Module } from '@nuxt/types'
 import chalk from 'chalk'
 import consola from 'consola'
+import { buildFileTree } from '../utils/file-tree'
 import tailwindConfig from './tailwind.config'
 import { createApolloServer } from './data-source'
 
@@ -22,6 +23,7 @@ const ThemeDocs: Module = async function () {
   const { options, hook } = this.nuxt
 
   const { docRepoUrl, docRepoDir }: IThemeDocsConfig = options.themeDocs || {}
+  const contentRoot = options.content.dir
 
   if (!docRepoUrl) {
     return Logger.error('docRepoUrl should not be empty!')
@@ -50,7 +52,7 @@ const ThemeDocs: Module = async function () {
 
   // 更新
   const error = await safeExec(
-    `cd ${targetDir} && git checkout nuxt && git pull --ff-only`
+    `cd ${targetDir} && git fetch && git clean -fd && git checkout -f nuxt && git pull --ff-only`
   )
   if (error) {
     return Logger.error(`update git repo: ${targetDir} failed: `, error)
@@ -69,12 +71,27 @@ const ThemeDocs: Module = async function () {
     options.css.push('~/assets/css/main.dev.css')
   }
 
+  const dirRootNode = await buildFileTree(
+    contentRoot,
+    (nodePath) => !basename(nodePath).startsWith('.')
+  )
+  if (!dirRootNode) {
+    Logger.error(`dirRootNode should not empty, contentRoot: ${contentRoot}`)
+  }
   hook('content:file:beforeInsert', (document: any) => {
-    const { dir, slug, category } = document
-
+    const { dir, slug, category, path, extension } = document
+    const absolutePath = join(contentRoot, `${path}${extension}`)
     // 配置文档连接
     document.to = dir === '/' ? `/${slug}` : `${dir}/${slug}`
     document.category = category
+    if (dirRootNode) {
+      const fileNode = dirRootNode.getChildByPath(absolutePath)
+      if (fileNode) {
+        document.position = fileNode.index
+      } else {
+        Logger.warn(`can not find fileNode by path: ${absolutePath}`)
+      }
+    }
   })
 
   // 渲染首页找到其他的所有页面

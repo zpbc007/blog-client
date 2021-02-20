@@ -27,8 +27,9 @@ export type ContentDocument = {
   slug?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  position: Scalars['Int'];
-  category?: Maybe<Scalars['String']>;
+  createAt?: Maybe<Scalars['String']>;
+  updateAt?: Maybe<Scalars['String']>;
+  category?: Maybe<Array<Maybe<Scalars['String']>>>;
   toc?: Maybe<Array<Maybe<ContentDocument_Toc>>>;
   body?: Maybe<ContentDocument_Body>;
   dir?: Maybe<Scalars['String']>;
@@ -37,7 +38,8 @@ export type ContentDocument = {
   createdAt?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['String']>;
   to?: Maybe<Scalars['String']>;
-  features?: Maybe<Array<Maybe<Scalars['String']>>>;
+  position: Scalars['Int'];
+  tag?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type ContentDocument_Toc = {
